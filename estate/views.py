@@ -84,7 +84,7 @@ class PostDeleteView(LoginRequiredMixin,DeleteView,UserPassesTestMixin):
 class PostDetailView(LoginRequiredMixin,DetailView):
     model=Post
 
-class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin):
+class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model=Post
     fields = ['post']
 
