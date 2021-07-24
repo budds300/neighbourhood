@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'estate'
-    'users'
+    'estate.apps.EstateConfig',
+    'users.apps.UsersConfig',
     'crispy_forms',
     'cloudinary',
     'rest_framework',
