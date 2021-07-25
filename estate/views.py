@@ -21,7 +21,7 @@ class BusinessCreateView(LoginRequiredMixin,CreateView):
     model = Business
     fields=['name','email','business_image','location']
     
-    def form_valid(self):
+    def form_valid(self,form):
         form.instance.business_owner = self.request.user
         return super().form_valid(form)
 
@@ -50,7 +50,7 @@ class BusinessDeleteView(LoginRequiredMixin,DeleteView):
             return True
         return False
 
-class PostListView(LoginRequiredMixin,ListView):
+class PostListView(ListView):
     model=Post
     template_name='engine/post_list.html'
     context_object_name='posts'
@@ -60,7 +60,7 @@ class PostCreateView(LoginRequiredMixin,CreateView,UserPassesTestMixin):
     model = Post
     fields = ['post']
     
-    def form_valid(self):
+    def form_valid(self,form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
@@ -81,14 +81,14 @@ class PostDeleteView(LoginRequiredMixin,DeleteView,UserPassesTestMixin):
             return True
         return False
     
-class PostDetailView(LoginRequiredMixin,DetailView):
+class PostDetailView(DetailView):
     model=Post
 
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model=Post
     fields = ['post']
 
-    def form_valid(self):
+    def form_valid(self,form):
         form.instance.author = self.request.user
         return super().form_valid(form)
         
@@ -99,11 +99,11 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
             return True
         return False
     
-@login_required
+
 def search_request(request):
     if 'query' in request.POST and request.GET['query']: 
         search = request.GET.get('query')
-        search_business= Business.search_business(search)
+        search_business= Business.search_by_title(search)
         messages= f'{search_item}'
         context = {"message":messages,"businesses":search_businesses}
         
