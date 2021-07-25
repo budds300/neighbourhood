@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'estate.apps.EstateConfig',
     'users.apps.UsersConfig',
+    'bootstrap4',
     'crispy_forms',
     'cloudinary',
     'rest_framework',
@@ -166,7 +167,7 @@ cloudinary.config(
     
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 django_heroku.settings(locals())
