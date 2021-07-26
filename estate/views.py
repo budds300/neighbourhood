@@ -10,12 +10,12 @@ from .form import BusinessForms,PostForms
 
 
 # Create your views here.
-class BusinessListView(LoginRequiredMixin,ListView):
+class BusinessListView(ListView):
     model = Business
     template_name= 'estate/home.html'
     context_object_name = 'businesses'
     
-class BusinessDetailView(LoginRequiredMixin,DetailView):
+class BusinessDetailView(DetailView):
     model=Business
 class BusinessCreateView(LoginRequiredMixin,CreateView):
     model = Business
